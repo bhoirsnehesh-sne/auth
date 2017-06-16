@@ -1,0 +1,75 @@
+<html ng-app="app">
+    <head>
+        <script src="https://cdn.firebase.com/js/client/2.0.4/firebase.js"></script>
+        <script src="https://code.angularjs.org/1.3.8/angular.js"></script>
+        <script src="https://cdn.firebase.com/libs/angularfire/0.9.0/angularfire.min.js"></script>
+        <script src="angular.app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+</head>
+<body>
+
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBOwlWebaMtN4nJkZG5Xz7WCK3aRGkSPGQ",
+    authDomain: "fir-fbdf6.firebaseapp.com",
+    databaseURL: "https://fir-fbdf6.firebaseio.com",
+    projectId: "fir-fbdf6",
+    storageBucket: "fir-fbdf6.appspot.com",
+    messagingSenderId: "600153281778"
+  };
+  firebase.initializeApp(config);
+  
+</script>
+
+
+<!--script>
+  
+var email = 'abcdef@gmail.com';
+var password = 'password';
+
+firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+   console.log(error.code);
+   console.log(error.message);
+});
+
+</script-->
+
+<button onclick = "googleSignin()">Google Signin</button>
+<button onclick = "googleSignout()">Google Signout</button>
+
+
+
+<script>
+var provider = new firebase.auth.GoogleAuthProvider();
+
+function googleSignin() {
+   firebase.auth()
+   
+   .signInWithPopup(provider).then(function(result) {
+      var token = result.credential.accessToken;
+      var user = result.user;
+		
+      console.log(token)
+      console.log(user)
+   }).catch(function(error) {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+		
+      console.log(error.code)
+      console.log(error.message)
+   });
+}
+
+function googleSignout() {
+   firebase.auth().signOut()
+	
+   .then(function() {
+      console.log('Signout Succesfull')
+   }, function(error) {
+      console.log('Signout Failed')  
+   });
+}
+</script>
+</body>
+</html>
