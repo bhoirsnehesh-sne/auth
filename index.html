@@ -35,12 +35,12 @@ firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(e
 
 </script-->
 
-<button onclick = "googleSignin()">Google Signin</button>
-<button onclick = "googleSignout()">Google Signout</button>
+<!--button onclick = "googleSignin()">Google Signin</button>
+ <button onclick = "googleSignout()">Google Signout</button-->
 
 
 
-<script>
+<!--script>
 var provider = new firebase.auth.GoogleAuthProvider();
 
 function googleSignin() {
@@ -52,11 +52,10 @@ function googleSignin() {
 		
       console.log(token)
       console.log(user)
-	   console.log('Signin Successfull')
    }).catch(function(error) {
       var errorCode = error.code;
       var errorMessage = error.message;
-		console.log('Signin failed')
+		
       console.log(error.code)
       console.log(error.message)
    });
@@ -66,11 +65,36 @@ function googleSignout() {
    firebase.auth().signOut()
 	
    .then(function() {
-      console.log('Signout Successfull')
+      console.log('Signout Succesfull')
    }, function(error) {
       console.log('Signout Failed')  
    });
 }
+</script-->
+
+
+<button onclick = "facebookSignin()">Facebook Signin</button>
+<button onclick = "facebookSignout()">Facebook Signout</button>
+
+
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '155352608341069',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v2.8'
+    });
+    FB.AppEvents.logPageView();   
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
 </script>
 </body>
 </html>
